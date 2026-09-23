@@ -3,6 +3,9 @@
 ## 2.0.1
 - Readable error page instead of a generic 500
 - Clear message when the config folder isn't writable (wrong owner on the /config mount)
+- Portainer guide and a ready-to-paste stack file
+- Notes on the two setup traps: a bind mount pointing at a path that doesn't exist,
+  and a config folder owned by root
 
 ## 2.0
 - Item page for editing ABS metadata (through the ABS API)
