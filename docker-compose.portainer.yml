@@ -1,0 +1,32 @@
+# Portainer stack: paste this into Stacks > Add stack > Web editor.
+# Uses the prebuilt image, so Portainer does not need the source code.
+# Edit the three lines marked CHANGE ME, then Deploy.
+
+services:
+  abs-dupes:
+    image: ghcr.io/gmwestrup/abs-duplicate-finder:latest
+    container_name: abs-dupes
+    ports:
+      - "5057:5057"
+    volumes:
+      # CHANGE ME: a folder for settings, scan results and the change log.
+      # Create it first, or Docker makes it owned by root.
+      - /volume1/Docker/abs-dupes/config:/config
+      # CHANGE ME: the SAME host folder your Audiobookshelf container uses.
+      # Copy it from that container's volume list; on some NAS systems it carries a
+      # prefix such as /share. A path that doesn't exist becomes an empty folder here.
+      # Only needed for editing files, tags and metadata.json.
+      - /volume1/Media/Audiobooks:/library
+    environment:
+      # CHANGE ME: how you reach Audiobookshelf (host IP and port, or its container name)
+      ABS_URL: http://192.168.1.50:13378
+      # Leave blank and paste the token in the web UI instead, so it isn't stored in the stack
+      ABS_TOKEN: ""
+      ABS_VERIFY_SSL: "1"
+      # Set to 1 only when you want to allow editing, renaming and trashing
+      ABS_EDITING: "0"
+      # "<path as ABS shows it>=<path inside this container>"; separate several with ;
+      PATH_MAP: /audiobooks=/library
+      TRASH_DIR: .abs-dupes-trash
+      TZ: America/New_York
+    restart: unless-stopped

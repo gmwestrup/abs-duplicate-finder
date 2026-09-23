@@ -1,0 +1,20 @@
+# Local settings hold your ABS API token: never commit them
+abs_dupes_settings.json
+abs_dupes_dismissed.json
+abs_dupes_last_scan.json
+abs_dupes_changes.log
+*.tmp
+backups/
+config/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

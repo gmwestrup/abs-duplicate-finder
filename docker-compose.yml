@@ -1,0 +1,26 @@
+version: "3"
+services:
+  abs-dupes:
+    # Build locally from this folder:
+    build: .
+    image: abs-duplicate-finder:latest
+    # Or use the image GitHub Actions publishes, and remove "build: .":
+    # image: ghcr.io/gmwestrup/abs-duplicate-finder:latest
+    container_name: abs-dupes
+    ports:
+      - "5057:5057"
+    volumes:
+      - ./config:/config          # settings, last scan, dismissed groups, change log, backups
+      # Only needed for file/folder/tag/metadata.json editing.
+      # Mount the SAME host folder your Audiobookshelf container uses for its library.
+      - /path/to/your/audiobooks:/library
+    environment:
+      # Optional: pre-fill settings (all can also be set in the web UI)
+      - ABS_URL=http://your-abs-server:13378
+      - ABS_TOKEN=
+      - ABS_VERIFY_SSL=1
+      - ABS_EDITING=0
+      # "<path ABS shows>=<path inside this container>"; separate several with ;
+      - PATH_MAP=/audiobooks=/library
+      - TRASH_DIR=.abs-dupes-trash
+    restart: unless-stopped

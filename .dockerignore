@@ -1,0 +1,9 @@
+.git
+.github
+docs
+config
+backups
+*.json
+*.log
+*.bat
+__pycache__
