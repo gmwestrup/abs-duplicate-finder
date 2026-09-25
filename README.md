@@ -131,6 +131,10 @@ Values saved in the web UI take priority over environment variables.
 
 On Windows these sit next to the script; in Docker they're in `/config`.
 
+## Publishing
+
+See [PUSH.md](PUSH.md) if you are pushing your own copy to GitHub.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
